@@ -1,0 +1,29 @@
+/* App-wide background and layout */
+.app-background {
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
+  /* Place your personal image in public/background.jpg */
+  background-image: url('/background.jpg');
+  background-size: contain; /* show full photo without cropping */
+  background-position: center center; /* keep image centered */
+  background-repeat: no-repeat; /* do not tile */
+  background-attachment: fixed; /* keep photo fixed on scroll */
+}
+
+/* Global overlay covering the whole viewport */
+.app-background::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.60);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Space below the fixed navbar */
+.page-container {
+  position: relative;
+  z-index: 1; /* ensure content sits above the overlay */
+  padding-top: 64px; /* adjust if you change navbar height */
+}

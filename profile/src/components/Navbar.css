@@ -1,0 +1,121 @@
+/* Top navigation bar */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(255,255,255,0.12);
+}
+
+
+.bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* name on left, links on right */
+  gap: 1rem;
+  padding: 0.5rem 1rem;
+}
+
+.nav {
+  display: flex;
+  gap: 0.75rem;
+  padding: 0.25rem 0;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+
+/* Hamburger button */
+.menu-toggle {
+  display: none; /* hidden on desktop */
+  width: 40px;
+  height: 36px;
+  padding: 6px;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.2);
+  background: rgba(0,0,0,0.15);
+  cursor: pointer;
+}
+.menu-toggle span {
+  display: block;
+  height: 2px;
+  background: #fff;
+  margin: 5px 0;
+  transition: transform 0.2s, opacity 0.2s;
+}
+.menu-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.menu-toggle.open span:nth-child(2) { opacity: 0; }
+.menu-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+.link {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.link:hover {
+  background: rgba(255,255,255,0.12);
+  transform: scale(1.05);
+}
+
+.link.active {
+  background: rgba(255,255,255,0.18);
+  font-weight: 700;
+  text-decoration: none;
+  /* text-underline-offset: 5px; */
+}
+
+.owner-name {
+  padding: 0.25rem 0.5rem;
+  color: rgba(255,255,255,0.92);
+  font-weight: 700;
+  font-size: 1.3rem; /* title-like */
+  letter-spacing: 0.4px;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.6);
+}
+
+@media (max-width: 640px) {
+  .bar {
+    position: relative;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.25rem;
+    padding-top: 0.75rem; /* space for absolute burger */
+  }
+  .owner-name {
+    text-align: center;
+  }
+  .menu-toggle {
+    display: inline-block;
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    align-self: auto;
+    z-index: 11;
+  }
+  /* Turn nav into a hidden dropdown */
+  .nav {
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.15rem;
+    padding: 0.25rem 0.25rem;
+    background: rgba(0, 0, 0, 0.45);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 8px;
+    max-height: 55vh; /* avoid too long menu */
+    overflow-y: auto;
+    width: 100%; /* full width dropdown */
+  }
+  .nav.show {
+    display: flex;
+  }
+  .link {
+    padding: 0.5rem 0.6rem; /* tighter on mobile */
+  }
+}
