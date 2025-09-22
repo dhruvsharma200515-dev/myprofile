@@ -11,9 +11,12 @@ export default defineConfig({
         {
           name: 'copy-redirects',
           closeBundle() {
-            const src = path.resolve('_redirects')       // root file
-            const dest = path.resolve('dist/_redirects') // copy into dist
-            fs.copyFileSync(src, dest)
+            const srcPath = path.resolve('_redirects')       // root file
+            const distPath = path.resolve('dist/_redirects') // copy into dist
+            if (fs.existsSync(srcPath)) {
+              fs.copyFileSync(srcPath, distPath)
+              console.log('_redirects copied to dist/')
+            }
           }
         }
       ]
